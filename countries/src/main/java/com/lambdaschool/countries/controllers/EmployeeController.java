@@ -92,13 +92,7 @@ public class EmployeeController {
         List<Country> myList = new ArrayList<>();
         countryrepos.findAll().iterator().forEachRemaining(myList::add);
         myList.sort((c1, c2) -> (int)(c1.getPopulation() - c2.getPopulation()));
-        int median;
-        if(myList.size() % 2 == 0)
-        {
-            median = myList.size() / 2;
-        } else {
-            median = myList.size() / 2 + 1;
-        }
-        return new ResponseEntity<>(myList.get(median), HttpStatus.OK);
+        double size = myList.size();
+        return new ResponseEntity<>(myList.get((int) Math.round(size /2)), HttpStatus.OK);
     }
 }
